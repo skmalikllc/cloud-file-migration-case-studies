@@ -1,83 +1,118 @@
-# Google Drive & Cloud File Organization — client case studies
+<img src="https://raw.githubusercontent.com/skmalikllc/automation-portfolio/main/assets/cover-cloud-migration.png" alt="cover" width="100%">
 
-**Project type:** Sanitized client case study (engagement record)
-**Platforms:** Upwork, Fiverr · **Status:** completed, reviewed work
+# Cloud File Migration & Organization — client case studies
 
-Client work on shared file estates: giving a Drive a structure a team can
-navigate, and moving files between cloud providers without losing the shape
-they were in.
+`SANITIZED CLIENT CASE STUDIES`
 
-> No client names, folder names, file names, links or screenshots of client
-> content appear in this repository.
+**Project type:** Sanitized client case studies
+**Evidence sources:** completed Upwork contract (5.0), completed Fiverr orders and public client reviews, published Fiverr portfolio project
+**Status:** delivered
+
+Moving file estates between cloud providers without losing their shape, and
+giving the ones that stayed put a structure a team can navigate.
+
+> No client names, folder names, file names, links, IDs or screenshots of client
+> content appear anywhere in this repository.
 
 ---
 
-## Problem
+## Why these jobs go wrong
 
-Shared drives decay in a predictable way. Files land at the root because that
-is where the upload dialog opens. Two people invent two folder schemes. Nobody
-deletes anything, because nobody is sure what it is. Eventually the team stops
-browsing and starts asking each other where things are — and when the business
-changes cloud provider, that mess is what gets copied across.
+Shared drives decay in a predictable way. Files land at the root because that is
+where the upload dialog opens. Two people invent two folder schemes. Nobody
+deletes anything, because nobody is sure what it is. Then the business changes
+provider, and that mess is what gets copied across — often flattened, sometimes
+renamed, and nobody notices until the file somebody needs is not where it was.
 
-Two different asks come out of this:
+The two failure modes worth naming:
 
-1. **Organise what exists** — a structure the team can actually use, and a way
-   to find things without asking.
-2. **Move it somewhere else intact** — a migration where folder structure and
-   file names survive the move.
+- **A migration that "succeeded" but flattened the structure.** Every byte
+  arrived. The folder tree did not. Functionally, the data is lost.
+- **A sync that propagates a deletion.** Someone tidies one side, the tool
+  faithfully tidies the other, and the only copy is gone.
 
-## Constraints
+Both are avoidable, and avoiding them is most of the actual work.
 
-- Access is to the **client's own storage**, granted and revoked by them.
-- **Structure is preserved on migrations.** A migration that flattens folders or
-  renames files has failed, even if every byte arrived.
-- Nothing is deleted without explicit instruction; reorganisation moves files,
-  it does not remove them.
-- No client files are copied to any machine or account outside the engagement.
+---
+
+## Architecture — the method
+
+```mermaid
+flowchart LR
+  A[Source provider] --> B[Inventory<br/>what is really there]
+  B --> C[Agree what must survive<br/>structure · names · dates]
+  C --> D[Dry run<br/>no writes]
+  D --> E[Transfer in batches<br/>never overwrite]
+  E --> F[Reconcile<br/>file by file]
+  F --> G{Ambiguous?}
+  G -- yes --> H[Escalate to client]
+  G -- no --> I[Destination confirmed]
+```
 
 ## Engagements
 
-| When | Client | Engagement | Duration |
-|---|---|---|---|
-| 2023 | Australia | Create and set up a Google Drive file structure | 3 days |
-| Nov 2024 | e-learning business | Course-content organisation: a structured folder system plus a master Google Doc for navigation (project value $100–$200) | 1–7 days |
-| 2025 | United States | Drive reorganisation for an owner and their team | 3 weeks |
-| — | Upwork client | Mega → Google Drive folder transfer with the structure kept intact | — |
+### 1. Mega → Google Drive migration — Upwork
 
-The e-learning engagement is published as a portfolio project on Fiverr; the
-Mega → Google Drive transfer is a completed Upwork contract rated 5.0.
+A folder tree moved between cloud storage providers with the structure kept
+intact. Contract closed at **5.0** and is listed as an Upwork Profile Highlight.
 
-## Result, in the clients' words
+**Tools.** Mega · Google Drive
 
-> "Drive was organized and really helped me and my team out."
-> — client, United States, 2025
+### 2. Dropbox organisation and Drive ↔ OneDrive migration — Fiverr
+
+Repeat cloud-storage organisation and migration work delivered through Fiverr,
+with client reviews recorded against that service in the account history.
+
+**Tools.** Dropbox · Google Drive · OneDrive
+
+### 3. Google Drive structure setup — Fiverr, 2023
+
+Creating and setting up a Drive file structure from scratch. Three-day delivery,
+5 stars.
 
 > "Prompt attention and action to create and set up Google drive file structure."
 > — client, Australia, 2023
 
-Sources: [fiverr.com/skmalik166](https://www.fiverr.com/skmalik166) (4.9 ★ from
-109 reviews) and [upwork.com/freelancers/skmalik1](https://www.upwork.com/freelancers/skmalik1)
-(100% Job Success, five contracts all rated 5.0).
+### 4. Drive reorganisation for an owner and their team — Fiverr, 2025
 
-## Tools
+A three-week engagement reorganising a shared Drive in use by a team.
 
-Google Drive, Google Docs, Mega, Dropbox, OneDrive. Provider-native transfer
-and sharing tools; no client data routed through third-party services.
+> "Drive was organized and really helped me and my team out."
+> — client, United States, 2025
 
-## Who this is useful for
+### 5. Course content organisation — Fiverr portfolio project, November 2024
 
-Teams whose shared drive has stopped being navigable, and businesses changing
-cloud provider who need the move to be boring — same structure on the other
-side, nothing missing.
+An e-learning client needed course content navigable rather than searchable: a
+structured folder system plus a master navigation document. Recorded project
+value $100–$200. Published as a portfolio project on Fiverr.
+
+---
+
+## How I work on these
+
+1. **Inventory before anything moves.** What is actually there, and which of it is
+   genuinely source rather than a copy of a copy.
+2. **Agree what must survive.** Structure, names, dates, sharing — in writing,
+   before the first transfer.
+3. **Dry run.** No writes.
+4. **Transfer in batches**, never overwriting an existing destination file.
+5. **Reconcile file by file** and escalate anything ambiguous instead of deciding
+   it myself.
+6. **Leave the recovery path intact** until the client confirms the result.
+
+## Implementation notes
+
+Client folder structures, file names, item IDs and account details are
+intentionally omitted because the estates they describe belong to the clients.
+Where a detail is not documented here, it is left out rather than reconstructed.
 
 ## Privacy
 
-Client identities, folder and file names, and the delivered structures are
-deliberately excluded. Quotes are from reviews the clients published publicly;
-usernames are omitted.
+No client names, no file or folder names, no IDs, no links, no credentials, no
+screenshots of client content. Quotes are from reviews clients published
+publicly; usernames are omitted.
 
-## Related work
+## Related
 
-- [table-to-sheets](https://github.com/skmalikllc/table-to-sheets) — getting tabular data out of web pages and into Sheets
-- [automation-portfolio](https://github.com/skmalikllc/automation-portfolio) — index of all projects
+- [gmail-business-inbox-organization](https://github.com/skmalikllc/gmail-business-inbox-organization)
+- [automation-portfolio](https://github.com/skmalikllc/automation-portfolio)

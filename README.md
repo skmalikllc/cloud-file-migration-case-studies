@@ -39,14 +39,14 @@ Both are avoidable, and avoiding them is most of the actual work.
 
 ```mermaid
 flowchart LR
-  A[Source provider] --> B[Inventory<br/>what is really there]
-  B --> C[Agree what must survive<br/>structure · names · dates]
-  C --> D[Dry run<br/>no writes]
-  D --> E[Transfer in batches<br/>never overwrite]
-  E --> F[Reconcile<br/>file by file]
-  F --> G{Ambiguous?}
-  G -- yes --> H[Escalate to client]
-  G -- no --> I[Destination confirmed]
+  A["Source provider"] --> B["Inventory<br/>what is really there"]
+  B --> C["Agree what must survive<br/>structure · names · dates"]
+  C --> D["Dry run<br/>no writes"]
+  D --> E["Transfer in batches<br/>never overwrite"]
+  E --> F["Reconcile<br/>file by file"]
+  F --> G{"Ambiguous?"}
+  G -- yes --> H["Escalate to client"]
+  G -- no --> I["Destination confirmed"]
 ```
 
 ## Engagements

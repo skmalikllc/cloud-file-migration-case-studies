@@ -88,6 +88,55 @@ value $100–$200. Published as a portfolio project on Fiverr.
 
 ---
 
+## One-way mirror and continuous sync — engagement type
+
+`ONGOING ENGAGEMENT · METHOD ONLY`
+
+A migration ends. A **mirror** does not — and that changes the whole risk profile.
+This is the one class of file work where the dangerous operation is not the copy,
+it is the delete.
+
+I am currently engaged on work of this kind between two major cloud platforms.
+**It is ongoing rather than delivered, so there is no case study here** — only the
+control rules the work is run under. No client, platform-account, volume or
+content detail appears below, and none will.
+
+**The problem.** A business keeps its files in one platform but needs them
+readable in another — for reporting, for a team that lives in different tooling,
+or as a second copy. The naive answer is a two-way sync, and it is the wrong one:
+two-way means an accidental deletion or an overwrite on either side propagates
+everywhere, and the "backup" destroys the thing it was protecting.
+
+**The control rules.**
+
+1. **One side is the master, in writing, before anything runs.** The other is a
+   mirror. Not "mostly", and not decided per folder later.
+2. **Deletion propagation is off.** A file removed on the master must not vanish
+   from the mirror on its own. Reclaiming space is a separate, deliberate,
+   reviewed action.
+3. **Direction is explicit and re-checked.** A sync job built for one direction
+   cannot simply be restarted when the business decides the other side is now
+   authoritative — that is a new job, re-validated from scratch.
+4. **Existing destination files are never overwritten.** Where both sides hold a
+   file of the same name at different sizes or times, it is held for a human to
+   decide which is authoritative. Same-name is not sameness.
+5. **Pilot before rollout**, on a scope small enough that being wrong is cheap.
+6. **The recovery path stays intact** — nothing is emptied or purged while any
+   version question is still open.
+7. **Permission boundaries are respected, not recreated.** A sync tool that can
+   create folders can also quietly widen who sees them; that gets confirmed
+   before it runs, not after.
+
+**Validation.** Transfer completeness is checked rather than assumed; folder and
+file consistency is reviewed across both sides; and anything genuinely ambiguous
+is put on a list for the client to decide instead of being resolved quietly. The
+absence of an error message is not evidence that everything arrived.
+
+**Privacy.** Client identity, platform account details, file and folder names,
+item IDs, volumes, counts, storage totals and internal decision history are all
+deliberately excluded. This section describes how the work is controlled, not
+whose files it touched.
+
 ## How I work on these
 
 1. **Inventory before anything moves.** What is actually there, and which of it is

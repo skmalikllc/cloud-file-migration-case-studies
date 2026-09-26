@@ -16,6 +16,35 @@ giving the ones that stayed put a structure a team can navigate.
 
 ---
 
+## Verified delivery volume
+
+`AUDITED 26 SEPTEMBER 2026`
+
+This is the largest single service line in my freelance history, and the numbers
+below come from reading the platform's own completed-order list rather than from
+memory.
+
+| | |
+|---|---|
+| Completed orders in this service line | **40** |
+| Of those, carrying a buyer rating | **13** |
+| Ratings observed | all 5 stars |
+| Largest single engagement observed | $760 |
+| Reviewed window | February 2025 – September 2026 |
+
+**What the 40 covers.** They were delivered under one service line spanning
+Dropbox organisation and Google Drive ↔ OneDrive migration, so the count is not
+split by provider — the platform record does not separate them, and I am not
+going to invent a breakdown that the evidence does not support. Mega work is
+evidenced separately, through the Upwork contract described below.
+
+**Scope of the audit.** 103 of 221 completed orders were individually reviewed
+before the platform presented a human-verification step and the audit stopped
+there. The 40 above are counted from those 103. Older orders in the same service
+line exist in the remaining 118 and are deliberately not estimated.
+
+---
+
 ## Why these jobs go wrong
 
 Shared drives decay in a predictable way. Files land at the root because that is
@@ -27,9 +56,9 @@ renamed, and nobody notices until the file somebody needs is not where it was.
 The two failure modes worth naming:
 
 - **A migration that "succeeded" but flattened the structure.** Every byte
-  arrived. The folder tree did not. Functionally, the data is lost.
+arrived. The folder tree did not. Functionally, the data is lost.
 - **A sync that propagates a deletion.** Someone tidies one side, the tool
-  faithfully tidies the other, and the only copy is gone.
+faithfully tidies the other, and the only copy is gone.
 
 Both are avoidable, and avoiding them is most of the actual work.
 
@@ -39,14 +68,14 @@ Both are avoidable, and avoiding them is most of the actual work.
 
 ```mermaid
 flowchart LR
-  A["Source provider"] --> B["Inventory<br/>what is really there"]
-  B --> C["Agree what must survive<br/>structure · names · dates"]
-  C --> D["Dry run<br/>no writes"]
-  D --> E["Transfer in batches<br/>never overwrite"]
-  E --> F["Reconcile<br/>file by file"]
-  F --> G{"Ambiguous?"}
-  G -- yes --> H["Escalate to client"]
-  G -- no --> I["Destination confirmed"]
+A["Source provider"] --> B["Inventory<br/>what is really there"]
+B --> C["Agree what must survive<br/>structure · names · dates"]
+C --> D["Dry run<br/>no writes"]
+D --> E["Transfer in batches<br/>never overwrite"]
+E --> F["Reconcile<br/>file by file"]
+F --> G{"Ambiguous?"}
+G -- yes --> H["Escalate to client"]
+G -- no --> I["Destination confirmed"]
 ```
 
 ## Engagements
@@ -61,7 +90,8 @@ intact. Contract closed at **5.0** and is listed as an Upwork Profile Highlight.
 ### 2. Dropbox organisation and Drive ↔ OneDrive migration — Fiverr
 
 Repeat cloud-storage organisation and migration work delivered through Fiverr,
-with client reviews recorded against that service in the account history.
+with client reviews recorded against that service in the account history. The
+audit above puts **40 completed orders, 13 of them rated,** behind this line.
 
 **Tools.** Dropbox · Google Drive · OneDrive
 
@@ -110,22 +140,22 @@ everywhere, and the "backup" destroys the thing it was protecting.
 **The control rules.**
 
 1. **One side is the master, in writing, before anything runs.** The other is a
-   mirror. Not "mostly", and not decided per folder later.
+mirror. Not "mostly", and not decided per folder later.
 2. **Deletion propagation is off.** A file removed on the master must not vanish
-   from the mirror on its own. Reclaiming space is a separate, deliberate,
-   reviewed action.
+from the mirror on its own. Reclaiming space is a separate, deliberate,
+reviewed action.
 3. **Direction is explicit and re-checked.** A sync job built for one direction
-   cannot simply be restarted when the business decides the other side is now
-   authoritative — that is a new job, re-validated from scratch.
+cannot simply be restarted when the business decides the other side is now
+authoritative — that is a new job, re-validated from scratch.
 4. **Existing destination files are never overwritten.** Where both sides hold a
-   file of the same name at different sizes or times, it is held for a human to
-   decide which is authoritative. Same-name is not sameness.
+file of the same name at different sizes or times, it is held for a human to
+decide which is authoritative. Same-name is not sameness.
 5. **Pilot before rollout**, on a scope small enough that being wrong is cheap.
 6. **The recovery path stays intact** — nothing is emptied or purged while any
-   version question is still open.
+version question is still open.
 7. **Permission boundaries are respected, not recreated.** A sync tool that can
-   create folders can also quietly widen who sees them; that gets confirmed
-   before it runs, not after.
+create folders can also quietly widen who sees them; that gets confirmed
+before it runs, not after.
 
 **Validation.** Transfer completeness is checked rather than assumed; folder and
 file consistency is reviewed across both sides; and anything genuinely ambiguous
@@ -140,13 +170,13 @@ whose files it touched.
 ## How I work on these
 
 1. **Inventory before anything moves.** What is actually there, and which of it is
-   genuinely source rather than a copy of a copy.
+genuinely source rather than a copy of a copy.
 2. **Agree what must survive.** Structure, names, dates, sharing — in writing,
-   before the first transfer.
+before the first transfer.
 3. **Dry run.** No writes.
 4. **Transfer in batches**, never overwriting an existing destination file.
 5. **Reconcile file by file** and escalate anything ambiguous instead of deciding
-   it myself.
+it myself.
 6. **Leave the recovery path intact** until the client confirms the result.
 
 ## Implementation notes
@@ -164,4 +194,5 @@ publicly; usernames are omitted.
 ## Related
 
 - [gmail-business-inbox-organization](https://github.com/skmalikllc/gmail-business-inbox-organization)
+- [fiverr-project-archive](https://github.com/skmalikllc/fiverr-project-archive)
 - [automation-portfolio](https://github.com/skmalikllc/automation-portfolio)
